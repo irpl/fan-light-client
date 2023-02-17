@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style_light.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <input type="checkbox" id="light-switch" />
+        <label for="light-switch" id="light-switch-label">
+          <div class="screw"></div>
+          <div class="switch"></div>
+          <div class="screw"></div>
+        </label>
+        <div id="background"></div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("light-switch").addEventListener("change", function (e) {
+        light_switch = this;
+        console.log(light_switch.checked);
+
+        var state = {
+          fan: false,
+          lights: this.checked,
+        };
+
+        fetch("https://ecse-fan-light.onrender.com/api/state", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(state),
+        })
+          .then((res) => res.json())
+          .then((json) => (light_switch.check = json.lights));
+      });
+    </script>
+  </body>
+</html>

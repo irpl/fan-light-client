@@ -13,25 +13,25 @@ body {
 .container {
   display: flex;
   height: 100%;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
-#light-switch {
+.switch-input {
   position: absolute;
   left: 0;
   top: 0;
   opacity: 0;
 }
-#light-switch:checked ~ #background {
+#lights-switch:checked ~ #background {
   background-color: #ebdbac;
 }
-#light-switch:checked ~ #light-switch-label {
+.switch-input:checked ~ .switch-label {
   box-shadow: 0 2px 2px #d0b57b;
 }
-#light-switch:checked ~ #light-switch-label .switch {
+.switch-input:checked ~ .switch-label .switch {
   box-shadow: 0 10px 10px -5px rgba(233, 219, 176, 1), 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 0 4px #fff4d3, 0 0 0 5px rgba(0, 0, 0, 0.1);
 }
-#light-switch:checked ~ #light-switch-label .switch:before {
+.switch-input:checked ~ .switch-label .switch:before {
   height: 75px;
   top: 0px;
   line-height: 75px;
@@ -39,7 +39,7 @@ body {
   color: #64bf60;
   text-shadow: 0 0 3px #38ff2e;
 }
-#light-switch:checked ~ #light-switch-label .switch:after {
+.switch-input:checked ~ .switch-label .switch:after {
   height: 70px;
   bottom: 5px;
   line-height: 70px;
@@ -48,7 +48,7 @@ body {
   color: #d7bf95;
   text-shadow: 0 0 0px transparent;
 }
-#light-switch-label {
+.switch-label {
   position: relative;
   display: block;
   height: 300px;
@@ -58,7 +58,7 @@ body {
   background-color: #fff4d3;
   border-radius: 10px;
 }
-#light-switch-label .switch {
+.switch-label .switch {
   cursor: pointer;
   height: 150px;
   width: 100px;
@@ -71,7 +71,7 @@ body {
   overflow: hidden;
   box-shadow: 0 10px 10px -5px rgba(233, 219, 176, 0), 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 0 4px #fff4d3, 0 0 0 5px rgba(0, 0, 0, 0.1);
 }
-#light-switch-label .switch:before {
+.switch-label .switch:before {
   content: "ON";
   display: block;
   position: absolute;
@@ -85,7 +85,7 @@ body {
   color: #bfa371;
   border-radius: 5px 5px 0 0;
 }
-#light-switch-label .switch:after {
+.switch-label .switch:after {
   content: "OFF";
   display: block;
   position: absolute;
@@ -100,7 +100,7 @@ body {
   text-shadow: 0 0 3px #ff4e00;
   border-radius: 0 0 5px 5px;
 }
-#light-switch-label .screw {
+.switch-label .screw {
   position: absolute;
   height: 16px;
   width: 16px;
@@ -111,7 +111,7 @@ body {
   overflow: hidden;
   box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.15);
 }
-#light-switch-label .screw:before {
+.switch-label .screw:before {
   content: "";
   display: block;
   position: absolute;
@@ -121,10 +121,10 @@ body {
   margin-left: -1px;
   background: rgba(0, 0, 0, 0.2);
 }
-#light-switch-label .screw:first-of-type {
+.switch-label .screw:first-of-type {
   top: 30px;
 }
-#light-switch-label .screw:last-of-type {
+.switch-label .screw:last-of-type {
   bottom: 30px;
 }
 #background {

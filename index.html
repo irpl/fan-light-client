@@ -10,24 +10,43 @@
   <body>
     <div class="container">
       <div>
-        <input type="checkbox" id="light-switch" />
-        <label for="light-switch" id="light-switch-label">
+        <input type="checkbox" id="lights-switch" class="switch-input" />
+        <label for="lights-switch" id="light-switch-label" class="switch-label">
           <div class="screw"></div>
           <div class="switch"></div>
           <div class="screw"></div>
         </label>
-        <div id="background"></div>
+        
       </div>
+      <div>
+        <input type="checkbox" id="fan-switch" class="switch-input"/>
+        <label for="fan-switch" id="fan-switch-label" class="switch-label">
+          <div class="screw"></div>
+          <div class="switch"></div>
+          <div class="screw"></div>
+        </label>
+        
+      </div>
+      <div id="background"></div>
     </div>
     <script>
-      document.getElementById("light-switch").addEventListener("change", function (e) {
-        light_switch = this;
-        console.log(light_switch.checked);
+      var state = {
+        fan: false,
+        lights: false,
+      };
 
-        var state = {
-          fan: false,
-          lights: this.checked,
-        };
+      var switches = document.getElementsByClassName("switch-input");
+      
+      for (var i = 0; i < switches.length; i++) {
+        switches[i].addEventListener('change', setState, false);
+      }
+      
+      function setState(e) {
+        var fan_light_switch = this;
+        console.log(fan_light_switch.checked);  
+
+        var appliance = e.target.id.split("-")[0];
+        state[appliance] = fan_light_switch.checked;
 
         fetch("https://ecse-fan-light-api.onrender.com/api/state", {
           method: "PUT",
@@ -38,7 +57,7 @@
         })
           .then((res) => res.json())
           .then((json) => (light_switch.check = json.lights));
-      });
+      };
     </script>
   </body>
 </html>
